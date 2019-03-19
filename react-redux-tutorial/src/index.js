@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
+// Storeの読み込み
 import configureStore from './store';
 
 ReactDOM.render(

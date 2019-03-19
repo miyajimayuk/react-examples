@@ -1,3 +1,4 @@
+// Storeの作成
 import { createStore } from "redux";
 import rotateReducer from "./reducers/rotateReducer";
 
