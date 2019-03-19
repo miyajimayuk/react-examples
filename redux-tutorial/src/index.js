@@ -9,11 +9,13 @@ import { createStore } from 'redux';
 
 // ２．reducer処理実装 <- 引数にStateとActionを渡す
 function reducer(state, action) {
-	if (action.type === 'changeState') {
-		return action.payload.newState;
+	switch (action.type) {
+		case 'changeState':
+			return action.payload.newState;
+		default:
+			return 'State';
 	}
-	return 'State';
-}
+};
 
 // ３．store定義 <- Storeの引数としてReducerを渡す
 const store = createStore(reducer);
