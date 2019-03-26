@@ -1,44 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-//import * as serviceWorker from './serviceWorker';
+import App from './components/App';
+import { createStore } from 'redux';
 
-function Index() {
-	return <h2>Home</h2>;
+function reducer(state = 'State', action) {
+	switch (action.type) {
+		case 'change':
+			return action.payload.newState;
+		default:
+			return state;
+	}
 }
 
-function About() {
-	return <h2>About</h2>;
-}
+const store = createStore(reducer);
 
-function Users() {
-	return <h2>Users</h2>;
-}
+console.log(store.getState());
+
+store.dispatch({
+	type: 'change',
+	payload: {newState: 'New'}
+})
+
+console.log(store.getState());
 
 ReactDOM.render(
-	<Router>
-		<div>
-			<ul>
-				<li>
-					<Link to="/">Home</Link>
-				</li>
-				<li>
-					<Link to="/about/">About</Link>
-				</li>
-				<li>
-					<Link to="/users/">Users</Link>
-				</li>
-			</ul>
-
-			<Route path="/" exact component={Index} />
-			<Route path="/about/" exact component={About} />
-			<Route path="/users/" exact component={Users} />
-		</div>
-	</Router>,
+	<App />,
 	 document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-//serviceWorker.unregister();
